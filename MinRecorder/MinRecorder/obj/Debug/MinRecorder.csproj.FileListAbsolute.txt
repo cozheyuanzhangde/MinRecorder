@@ -1,0 +1,10 @@
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\bin\Debug\MinRecorder.exe.config
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\bin\Debug\MinRecorder.exe
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\bin\Debug\MinRecorder.pdb
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\obj\Debug\MinRecorder.csprojAssemblyReference.cache
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\obj\Debug\MinRecorder.Form1.resources
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\obj\Debug\MinRecorder.Properties.Resources.resources
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\obj\Debug\MinRecorder.csproj.GenerateResource.cache
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\obj\Debug\MinRecorder.csproj.CoreCompileInputs.cache
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\obj\Debug\MinRecorder.exe
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\MinRecorder\obj\Debug\MinRecorder.pdb
