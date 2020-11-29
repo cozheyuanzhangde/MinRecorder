@@ -9,6 +9,8 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.IO;
 using Accord.Video.FFMPEG;
+using NAudio.Wave;
+
 
 namespace MinRecorder
 {
@@ -21,6 +23,9 @@ namespace MinRecorder
         private int fileCount = 1;
         private List<string> inputImageSequence = new List<string>();
 
+        //Audio setup:
+        private LoopbackRecorder sysRecorder = new LoopbackRecorder();
+
         //File variables:
         private string audioName = "mic.wav";
         private string videoName = "video.mp4";
@@ -28,13 +33,6 @@ namespace MinRecorder
 
         //Time Variable:
         Stopwatch watch = new Stopwatch();
-
-        //Audio Variables:
-        public static class NativeMethods     //import dll
-        {
-            [DllImport("winmm.dll", EntryPoint = "mciSendStringA", ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = true)]
-            public static extern int record(string lpstrCommand, string lpstrReturnString, int uReturnLength, int hwndCallback);
-        }
 
         public ScreenRecorder(Rectangle b, string outPath)
         {
@@ -123,17 +121,19 @@ namespace MinRecorder
             }
         }
 
+        
+
         public void RecordAudio()
         {
-            NativeMethods.record("open new Type waveaudio Alias recsound", "", 0, 0);
-            NativeMethods.record("record recsound", "", 0, 0);
+            // Define the output wav file of the recorded audio
+            string outputFilePath = @"C:\Users\BrianZ\Desktop\testFiles\mic.wav";
+            sysRecorder.StartRecording(outputFilePath);
+         
         }
 
         private void SaveAudio()
         {
-            string audioPath = "save recsound " + outputPath + "//" + audioName;
-            NativeMethods.record(audioPath, "", 0, 0);
-            NativeMethods.record("close recsound", "", 0, 0);
+            sysRecorder.StopRecording();
         }
 
         private void SaveVideo(int width, int height, int frameRate)

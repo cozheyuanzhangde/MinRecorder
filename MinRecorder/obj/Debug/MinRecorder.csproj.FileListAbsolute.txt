@@ -34,3 +34,5 @@ C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\obj\Debug\MinRec
 C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\obj\Debug\MinRecorder.csproj.CopyComplete
 C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\obj\Debug\MinRecorder.exe
 C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\obj\Debug\MinRecorder.pdb
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\bin\Debug\NAudio.dll
+C:\Users\BrianZ\Desktop\c0zzydeProjects\MinRecorder\MinRecorder\bin\Debug\NAudio.xml
