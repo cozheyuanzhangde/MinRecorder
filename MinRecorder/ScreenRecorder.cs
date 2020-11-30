@@ -36,7 +36,7 @@ namespace MinRecorder
 
         public ScreenRecorder(Rectangle b, string outPath)
         {
-            CreateTempFolder("tempScreenshots");
+            CreateTempFolder("m1nr3c0rd3t3mpf01d3r");
 
             bounds = b;
             outputPath = outPath;

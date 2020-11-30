@@ -9,15 +9,37 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio;
 using NAudio.Wave;
+using System.Runtime.InteropServices;
 
 namespace MinRecorder
 {
     public partial class Form1 : Form
     {
+        [DllImport("gdi32.dll")]
+        static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public enum DeviceCap
+        {
+            VERTRES = 10,
+            DESKTOPVERTRES = 117
+        }
+
+
+        private float getScalingFactor()
+        {
+            Graphics g = Graphics.FromHwnd(IntPtr.Zero);
+            IntPtr desktop = g.GetHdc();
+            int LogicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.VERTRES);
+            int PhysicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.DESKTOPVERTRES);
+
+            float ScreenScalingFactor = (float)PhysicalScreenHeight / (float)LogicalScreenHeight;
+
+            return ScreenScalingFactor;
         }
 
         bool folderSelected = false;
@@ -32,11 +54,17 @@ namespace MinRecorder
         {
             MinimizeBox = false;
             MaximizeBox = false;
+            Rectangle bounds = Screen.FromControl(this).Bounds;
+            double zoomFactor = getScalingFactor();
+            bounds.Height = Convert.ToInt32(bounds.Height * zoomFactor);
+            bounds.Width = Convert.ToInt32(bounds.Width * zoomFactor);
+            label1.Text = bounds.Width.ToString() + " " + bounds.Height.ToString();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            tmrRecord.Stop();
+            timer1.Stop();
             screenRec.Stop();
             Application.Restart();
         }
@@ -52,6 +80,9 @@ namespace MinRecorder
                 folderSelected = true;
 
                 Rectangle bounds = Screen.FromControl(this).Bounds;
+                double zoomFactor = getScalingFactor();
+                bounds.Height = Convert.ToInt32(bounds.Height * zoomFactor);
+                bounds.Width = Convert.ToInt32(bounds.Width * zoomFactor);
                 screenRec = new ScreenRecorder(bounds, outputPath);
 
             }
@@ -66,14 +97,14 @@ namespace MinRecorder
             screenRec.RecordAudio();
             screenRec.RecordVideo();
 
-            lblTime.Text = screenRec.GetElapsed() + "";
+            timeDisplay.Text = screenRec.GetElapsed() + "";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if(folderSelected == true)
             {
-                tmrRecord.Start();
+                timer1.Start();
                 var silence = new SilenceProvider(wavefmt).ToSampleProvider();
                 WaveOut player = new WaveOut();
                 player.Init(silence);

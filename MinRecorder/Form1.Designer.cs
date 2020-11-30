@@ -33,8 +33,9 @@ namespace MinRecorder
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.tmrRecord = new System.Windows.Forms.Timer(this.components);
-            this.lblTime = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timeDisplay = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -73,27 +74,37 @@ namespace MinRecorder
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // tmrRecord
+            // timer1
             // 
-            this.tmrRecord.Interval = 15;
-            this.tmrRecord.Tick += new System.EventHandler(this.tmrRecord_Tick);
+            this.timer1.Interval = 15;
+            this.timer1.Tick += new System.EventHandler(this.tmrRecord_Tick);
             // 
-            // lblTime
+            // timeDisplay
             // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(184, 368);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(94, 25);
-            this.lblTime.TabIndex = 3;
-            this.lblTime.Text = "00:00:00";
+            this.timeDisplay.AutoSize = true;
+            this.timeDisplay.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeDisplay.Location = new System.Drawing.Point(184, 368);
+            this.timeDisplay.Name = "timeDisplay";
+            this.timeDisplay.Size = new System.Drawing.Size(94, 25);
+            this.timeDisplay.TabIndex = 3;
+            this.timeDisplay.Text = "00:00:00";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(207, 226);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(159, 15);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "display window size";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(405, 445);
-            this.Controls.Add(this.lblTime);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.timeDisplay);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -110,8 +121,9 @@ namespace MinRecorder
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Timer tmrRecord;
-        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label timeDisplay;
+        private System.Windows.Forms.Label label1;
     }
 }
 
