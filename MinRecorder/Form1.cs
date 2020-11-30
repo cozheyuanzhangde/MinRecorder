@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio;
+using NAudio.Wave;
 
 namespace MinRecorder
 {
@@ -20,6 +22,9 @@ namespace MinRecorder
 
         bool folderSelected = false;
         string outputPath = "";
+
+        //Wave Format for silent wave of output
+        WaveFormat wavefmt = new WaveFormat(44100, 16, 2);
 
         ScreenRecorder screenRec = new ScreenRecorder(new Rectangle(), "");
 
@@ -69,6 +74,10 @@ namespace MinRecorder
             if(folderSelected == true)
             {
                 tmrRecord.Start();
+                var silence = new SilenceProvider(wavefmt).ToSampleProvider();
+                WaveOut player = new WaveOut();
+                player.Init(silence);
+                player.Play();
             }
             else
             {
