@@ -42,6 +42,9 @@ namespace MinRecorder
             return ScreenScalingFactor;
         }
 
+        public static string WaitingMsg = "";
+        private int seconds = 0;
+
         bool folderSelected = false;
         string outputPath = "";
 
@@ -58,15 +61,16 @@ namespace MinRecorder
             double zoomFactor = getScalingFactor();
             bounds.Height = Convert.ToInt32(bounds.Height * zoomFactor);
             bounds.Width = Convert.ToInt32(bounds.Width * zoomFactor);
-            label1.Text = bounds.Width.ToString() + " " + bounds.Height.ToString();
+            label1.Text = "     Screen Size After Zooming: " + bounds.Width.ToString() + "x" + bounds.Height.ToString()+ "                     ";
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            textBox2.Text = "Start Merging Process...Please Wait...";
             timer1.Stop();
             screenRec.Stop();
-            Application.Restart();
+            timer3.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -78,6 +82,7 @@ namespace MinRecorder
             {
                 outputPath = folderBrowser.SelectedPath;
                 folderSelected = true;
+                button1.Enabled = true;
 
                 Rectangle bounds = Screen.FromControl(this).Bounds;
                 double zoomFactor = getScalingFactor();
@@ -88,15 +93,14 @@ namespace MinRecorder
             }
             else
             {
-                MessageBox.Show("Please select a folder", "Error");
+                MessageBox.Show("Please select a folder to continue", "Error");
             }
         }
 
-        private void tmrRecord_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
             screenRec.RecordAudio();
             screenRec.RecordVideo();
-
             timeDisplay.Text = screenRec.GetElapsed() + "";
         }
 
@@ -104,15 +108,33 @@ namespace MinRecorder
         {
             if(folderSelected == true)
             {
-                timer1.Start();
                 var silence = new SilenceProvider(wavefmt).ToSampleProvider();
                 WaveOut player = new WaveOut();
                 player.Init(silence);
                 player.Play();
+                WaitingMsg = "Screen Recording Starts...";
+                timer2.Start();
+                textBox2.Enabled = true;
+                timer1.Start();
+                button2.Enabled = true;
             }
             else
             {
                 MessageBox.Show("You must select an output folder before recording", "Error");
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            textBox2.Text = WaitingMsg;
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            seconds++;
+            if(seconds == 5)
+            {
+                Application.Restart();
             }
         }
     }

@@ -27,9 +27,9 @@ namespace MinRecorder
         private LoopbackRecorder sysRecorder = new LoopbackRecorder();
 
         //File variables:
-        private string audioName = "mic.wav";
-        private string videoName = "video.mp4";
-        private string finalName = "FinalVideo.mp4";
+        private string audioName = "loopbackaudio.wav";
+        private string videoName = "originalvideo.mp4";
+        private string finalName = "finalvideo.mp4";
 
         //Time Variable:
         Stopwatch watch = new Stopwatch();
@@ -76,19 +76,6 @@ namespace MinRecorder
             Directory.Delete(targetDir, false);
         }
 
-        private void DeleteFileExcept(string targetFile, string excFile)
-        {
-            string[] files = Directory.GetFiles(targetFile);
-
-            foreach(string file in files)
-            {
-                if(file != excFile){
-                    File.SetAttributes(file, FileAttributes.Normal);
-                    File.Delete(file);
-                }
-            }
-        }
-
         public void CleanUp()
         {
             if (Directory.Exists(tempPath))
@@ -126,7 +113,7 @@ namespace MinRecorder
         public void RecordAudio()
         {
             // Define the output wav file of the recorded audio
-            string outputFilePath = @"C:\Users\BrianZ\Desktop\testFiles\mic.wav";
+            string outputFilePath = outputPath + "//" + audioName;
             sysRecorder.StartRecording(outputFilePath);
          
         }
@@ -156,10 +143,10 @@ namespace MinRecorder
 
         private void CombineVideoAndAudio(string video, string audio)
         {
-            string command = $"/C ffmpeg -i \"{video}\" -i \"{audio}\" -shortest {finalName}";      //"/k" to NOT see command line prompt
+            string command = $"/C ffmpeg -i \"{video}\" -i \"{audio}\" -shortest {finalName}";
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                CreateNoWindow = false,
+                WindowStyle = ProcessWindowStyle.Hidden,
                 FileName = "cmd.exe",
                 WorkingDirectory = outputPath,
                 Arguments = command
@@ -168,6 +155,7 @@ namespace MinRecorder
             using (Process exeProcess = Process.Start(startInfo))
             {
                 exeProcess.WaitForExit();
+                Form1.WaitingMsg = "Merging completed. Final video is outputted in the selected folder. Application Restarts in seconds...";
             }
         }
 
@@ -177,7 +165,7 @@ namespace MinRecorder
 
             int width = bounds.Width;
             int height = bounds.Height;
-            int frameRate = 15;
+            int frameRate = 20;
 
             SaveAudio();
 
@@ -186,7 +174,6 @@ namespace MinRecorder
             CombineVideoAndAudio(videoName, audioName);
 
             DeletePath(tempPath);
-
 
         }
     }
