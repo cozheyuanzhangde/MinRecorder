@@ -177,7 +177,7 @@ namespace MinRecorder
 
             int width = bounds.Width;
             int height = bounds.Height;
-            int frameRate = 10;
+            int frameRate = 15;
 
             SaveAudio();
 
