@@ -67,6 +67,7 @@ namespace MinRecorder
 
         private void button2_Click(object sender, EventArgs e)
         {
+            button1.BackColor = SystemColors.ActiveCaption;
             textBox2.Text = "Start Merging Process...Please Wait...";
             timer1.Stop();
             screenRec.Stop();
@@ -117,6 +118,7 @@ namespace MinRecorder
                 textBox2.Enabled = true;
                 timer1.Start();
                 button2.Enabled = true;
+                button1.BackColor = Color.LightCoral;
             }
             else
             {

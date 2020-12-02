@@ -30,6 +30,7 @@ namespace MinRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,6 +46,8 @@ namespace MinRecorder
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -96,7 +99,7 @@ namespace MinRecorder
             this.timeDisplay.AutoSize = true;
             this.timeDisplay.BackColor = System.Drawing.SystemColors.Info;
             this.timeDisplay.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeDisplay.Location = new System.Drawing.Point(416, 129);
+            this.timeDisplay.Location = new System.Drawing.Point(416, 131);
             this.timeDisplay.Name = "timeDisplay";
             this.timeDisplay.Size = new System.Drawing.Size(106, 23);
             this.timeDisplay.TabIndex = 3;
@@ -151,7 +154,7 @@ namespace MinRecorder
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Silver;
             this.label6.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(224, 129);
+            this.label6.Location = new System.Drawing.Point(221, 131);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(166, 23);
             this.label6.TabIndex = 10;
@@ -201,11 +204,22 @@ namespace MinRecorder
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MinRecorder.Properties.Resources.MinRecorderLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(440, 41);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(82, 77);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 409);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
@@ -219,9 +233,11 @@ namespace MinRecorder
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "MinRecorder";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,6 +260,7 @@ namespace MinRecorder
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
