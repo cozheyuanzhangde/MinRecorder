@@ -1,2 +1,2 @@
 # MinRecorder
-Minimal Screen Recorder for Windows. Made for "Easy to Use".
+Minimal Screen Recorder for Windows.
